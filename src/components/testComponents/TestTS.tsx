@@ -2,24 +2,32 @@
 
 const TestTS = () => {
 
-    let numberTest: number = 23;
-    let stringTest: string = `TypeScript ${numberTest}`;
-    console.log(typeof stringTest);
 
-    const isBirthday: boolean = true;
-    const age: number = 40;
-    const userName: string = 'Egor';
-
-    if (isBirthday) {
-        console.log(`Congrats ${userName.toUpperCase()}, age: ${age + 1}`);
+    const createError = (msg: string): never => {
+        throw new Error(msg);
     }
+
+    const isBirthdayData: boolean = true;
+    const ageData: number = 40;
+    const userNameData: string = 'Egor';
+
+    const logBtrMsg = (isBirthday: boolean, userName: string, age: number): string => {
+        if (isBirthday === true) {
+            return `Congrats ${userName.toUpperCase()}, age: ${age + 1}`;
+        } else if (isBirthday === false) {
+            return createError("Error");
+        }
+        return createError("Error");
+    }
+
+    let message = logBtrMsg(isBirthdayData, userNameData, ageData);
+
 
 
     return (
         <div>
-            <h1>{stringTest}</h1>
+            <h1>{message}</h1>
         </div>
-
     )
 }
 
