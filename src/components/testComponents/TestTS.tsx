@@ -1,49 +1,47 @@
-import { error } from 'console';
+
+import { strict } from 'assert';
 import './map.scss';
 
 const TestTS = () => {
 
-
-    type Config = { protocol: 'htttp' | 'https', port: 3000 | 3001 };
-    type Role = {
-        role: string;
-    };
-
-    type ConfigWithRole = Config & Role;
-
-
-
-    const serverConfig: ConfigWithRole = {
-        protocol: 'https',
-        port: 3001,
-        role: 'admin',
+    interface User {
+        readonly login: string;
+        password: string;
+        age: number;
+        addr: string | undefined;
+        parents?: {
+            mother?: string;
+            father?: string;
+        }
     }
 
-    const backupConfig: ConfigWithRole = {
-        protocol: 'htttp',
-        port: 3000,
-        role: 'sisadmib',
+    const user: User = {
+        login: 'egor',
+        password: 'torop',
+        age: 3,
+        addr: 'asdas'
     }
 
-    const start: (protocol: 'htttp' | 'https', port: 3000 | 3001) => string = (
-        protocol: 'htttp' | 'https',
-        port: 3000 | 3001):
-        'Server started' => {
-        console.log(`Server started on ${protocol}://server:${port}://port`);
-        return "Server started"
+    let bdName: string;
+
+    setUserData(user, 'ewdfsdf');
+    console.log(bdName!)
+
+    function setUserData(obj: User, bd?: string): void {
+        bdName = '12345'
+        console.log(obj.parents?.father?.toLowerCase(), bd?.toLocaleLowerCase());
     }
 
-    start(serverConfig.protocol, serverConfig.port)
+    const basicPorts: readonly [number, ...string[]] = [3000, '3001', '5555'];
 
 
 
     return (
         <div>
-            <h1>Hrllo</h1>
+            <h1>Hello</h1>
             <div className="map" id="map"></div>
-
         </div>
-    )
+    );
 }
 
 export default TestTS;
